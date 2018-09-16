@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+        #wrap{
+            width: 100px;
+            height: 100px;
+            background-color:pink;
+        }
+
+    </style>
+</head>
+    <body>
+        <div id="wrap">
+    
+        </div>
+         <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        var $wrap = $("#wrap");
+
+        $wrap.click(function (e) {
+            console.log(e);
+            //事件对象，也是jq重新封装过的，如果引入的而是兼容版本，那么就不用考虑事件对象的各种兼容性
+            console.log(1);
+        });
+
+        $wrap.click(function (e) {
+            console.log(e);
+            console.log(2); //能添加多个事件
+        });
+
+        $wrap.on({
+            "click" : function () {
+                console.log("click");
+            },
+            'mouseenter': function () {
+                console.log("mouseenter");
+            }
+        }); //->相当于#wrap.addEventListener
+
+        $wrap.on({
+            "click.name1" : function () {
+                console.log("click");
+            },
+            'mouseenter.name2': function () {
+                console.log("mouseenter");
+            }
+        }); //->给事件对象添加自定义属性
+
+        $wrap.off("click.name1 mouseenter.name2"); //->去除$wrap绑定的事件
+
+        //hover ->mouseenter mouseleave
+        $wrap.hover(
+            function () {
+                console.log(1);//->mouseenter
+            },
+            function () {
+                console.log(2);//->mouseleave
+        });
+
+        //->one
+        $wrap.one("click",function () {
+            console.log(1);
+        });//->点击一次 事件就取消
+
+        //事件委托
+        $wrap.on("click","p",function () {
+            console.log(1);
+            console.log( $(this).index() );//->获取当前点击p在父级的序号
+        })
+    </script>
+    </body>
+</html>

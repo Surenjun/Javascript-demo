@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+        div{
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius:50%;
+            background-image: radial-gradient(circle,#faa, #f0ffbf);
+        }
+
+    </style>
+</head>
+<body>
+<script>
+        function pro(num) {
+
+            for(var i = 0;i < num ;i++){
+
+                var aDiv = document.createElement("div");
+                aDiv.speedX = Math.floor((Math.random()) * 8 + 1);
+                aDiv.speedY = Math.floor((Math.random()) * 8 + 1);
+                document.body.appendChild(aDiv);
+            }
+
+            var div = document.querySelectorAll("div");
+            var maxX = document.documentElement.clientWidth - div[0].offsetWidth,
+                maxY = document.documentElement.clientHeight - div[0].offsetHeight
+            ;
+
+            move();
+            function move() {
+                for(var j = 0;j < num; j++){
+                    var that = div[j],
+                        left = that.offsetLeft + that.speedX,
+                        above = that.offsetTop + that.speedY
+                    ;
+
+                    if( left <= 0|| left >= maxX){
+                        left = Math.max(0,left);
+                        left = Math.min(maxX,left);
+                        that.speedX = - that.speedX;
+                        that.style.backgroundImage = "radial-gradient(circle," + color() + ","+ color() +")";
+                    }
+                    if( above <= 0|| above >= maxY){
+                        above = Math.max(0,above);
+                        above = Math.min(maxX,above);
+                        that.speedY = - that.speedY;
+                        that.style.backgroundImage = "radial-gradient(circle,"+ color() + ","+ color() +")";
+                    }
+                    that.style.left = left + "px";
+                    that.style.top = above + "px";
+                }
+                requestAnimationFrame(move);
+            }
+
+            window.onresize = function () {
+                maxX = document.documentElement.clientWidth - div[0].offsetWidth;
+                maxY = document.documentElement.clientHeight - div[0].offsetHeight;
+            };
+
+
+            function color() {
+
+                var r = Math.floor(Math.random()*255),
+                    g = Math.floor(Math.random()*255),
+                    b = Math.floor(Math.random()*255)
+                ;
+                return "rgb(" + r + "," + g +","+ b + ")";
+            }
+        }
+
+
+       pro(9);
+</script>
+</body>
+</html>

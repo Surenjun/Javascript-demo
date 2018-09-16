@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>43js</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        li{list-style: none;}
+        i,em{font-style: none;}
+    </style>
+</head>
+<body>
+<div id="wrap" class="box text">1234</div>
+<div id="wrap" class="box text">33333</div>
+<script>
+    // var oWrap = document.getElementById("wrap"),
+    // oBox = oWrap.getElementsByClassName("box"),
+    // oDiv = document.getElementsByTagName("div")[0];
+    // console.log(oWrap.className);
+    // console.log(oBox);
+    // console.log(oDiv);
+    if(!document.getElementsByClassName){
+        //能进来一定是IE8及以下不支持getElementsByClassName的浏览器
+        document.getElementsByClassName = function(eleName){
+            //eleName ： 类名称
+            //通配符获取所有的标签
+            var aEle = document.getElementsByTagName("*"),
+                reg = new RegExp("\\b"+eleName+"\\b"),
+                arrEle = [];
+            for(var i = 0, len = aEle.length; i < len; i++){
+                //遍历所有的元素节点
+                //box
+                // <div class="box text  box box wrap box2 ">
+                // var reg = /\bbox\b/g;
+                //在正则的构造函数里，转义符号必须写\\，才能是转义的意思
+                //第二个参数是标识符，一定要是字符串
+                // var reg = new RegExp("\\b"+eleName+"\\b","g");
+                if(reg.test(aEle[i].className)){
+                    arrEle.push(aEle[i]);
+                }
+            }
+            return arrEle;
+            // return [];返回数组
+        };
+    }
+    var oBox = document.getElementsByClassName("box");
+    console.log(oBox.length);
+
+    // oBox = oWrap.getElementsByClassName("box"),
+</script>
+</body>
+</html>

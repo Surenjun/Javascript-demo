@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #container{
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+        }
+        #container.red{
+            background-color: red;
+        }
+        #container.pink{
+            background: pink;
+        }
+        #container.orange{
+            background: orange;
+        }
+        #container.black{
+            background: black;
+        }
+        #container.blue{
+            background: blue;
+        }
+        #container.olive{
+            background:olive;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" class="red"></div>
+    <script>
+        var oCon = document.getElementById('container');
+        var bool = true;
+        // oCon.onclick = function(){
+        //     if(bool){
+        //         this.className = 'pink';
+        //     }else{
+        //         this.className = 'orange';
+        //     }
+        //     bool = !bool;
+        // }
+        // oCon.onclick = function(){
+        //     this.className = bool?'pink':'orange';
+        //     bool = !bool;
+        // };
+
+        var arr = ['pink','orange','black','blue','olive'];
+        var index = 0;
+        oCon.onclick = function(){
+            this.className = arr[index++%5];
+        };
+
+        var a = 10;
+        var b = a < 5 && 2 || 3;//->3
+        alert(b);
+
+        //求能被3 7 11的最小数
+        for(var i = 1;true;i++) {
+            if (!(i % 3 || i % 7 || i % 11)) {
+                console.log(i);
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

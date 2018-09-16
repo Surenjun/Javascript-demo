@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        div{
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius:50%;
+        }
+    </style>
+</head>
+    <body>
+
+    <script>
+
+        for(var i = 0;i < 8;i++){
+            var oDiv = document.createElement("div");
+            change(oDiv,true);
+            document.body.appendChild(oDiv);
+        }
+
+        function change(oDiv,bool) {
+            var str = "#";
+            for(var i = 0;i < 6;i++){
+                var color = Math.floor(Math.random()*16).toString(16);
+                str += color;
+            }
+            if(bool){
+                oDiv.speedX = Math.floor((Math.random()) * 8 + 1);
+                oDiv.speedY = Math.floor((Math.random()) * 8 + 1);
+            }
+            oDiv.style.backgroundColor = str;
+        }
+
+        var aDiv = document.querySelectorAll("div");
+        var maxX = document.documentElement.clientWidth - aDiv[0].offsetWidth,
+            maxY = document.documentElement.clientHeight - aDiv[0].offsetHeight
+        ;
+        window.onresize = function () {
+            maxX = document.documentElement.clientWidth - aDiv[0].offsetWidth;
+            maxY = document.documentElement.clientHeight - aDiv[0].offsetHeight;
+        };
+
+        !function move() {
+           for(var i = 0,len = aDiv.length;i< len;i++){
+
+               var _left = aDiv[i].offsetLeft,
+                   _top = aDiv[i].offsetTop
+               ;
+               console.log(aDiv[i].speedX);
+               _left += aDiv[i].speedX;
+               _top += aDiv[i].speedY;
+
+               if(_left >= maxX || _left <= 0){
+                   _left = Math.max(0,_left);
+                   _left = Math.min(_left,maxX);
+                   aDiv[i].speedX = - aDiv[i].speedX;
+                   change(aDiv[i]);
+               }
+               if(_top >= maxY || _top <= 0){
+                   _top = Math.max(0,_top);
+                   _top = Math.min(_top,maxY);
+                   aDiv[i].speedY = - aDiv[i].speedY;
+                   change(aDiv[i]);
+               }
+
+               aDiv[i].style.left = _left + "px";
+               aDiv[i].style.top = _top + "px";
+           }
+            requestAnimationFrame(move);
+
+        }();
+
+
+    </script>
+    </body>
+</html>

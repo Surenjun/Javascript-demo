@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #container{
+            margin-top: 50px;
+        }
+        #container span{
+            float: left;
+            width: 160px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+        var oCta = document.getElementById("container");
+
+        setInterval(function () {
+            var str = "#";
+            for(var i = 0;i < 6;i++){
+                var x = Math.floor(Math.random()*16).toString(16);
+                str += x;
+
+            }
+            str = "<span style='background-color:" + str + "'>" + str + "</span>";
+            oCta.innerHTML += str;
+            console.log(str);
+        },500);
+    </script>
+    </body>
+</html>

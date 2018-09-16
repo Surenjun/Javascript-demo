@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+
+        {
+            let x = 10;
+            function f(x, y = function(){return ++x;}() ) {
+                console.log(x , y);
+            }
+            f(20); //  ->21 false
+        }
+
+        !function f1() {}();
+        (function () {})()
+
+        // {
+        //     let x = 10;
+        //     function f(x , y = function () { x++; console.log(x) }) {
+        //         var x = 90;
+        //         y();
+        //         console.log(x);
+        //         console.log(arguments[0]);
+        //         console.log(arguments[1]);
+        //     }
+        //     f(20); //-> 21 90 20 undefined
+        //     console.log(x);
+        // }
+        //
+        // {
+        //     function f(a,b,c=2) {}      console.log(f.length);  //->  2
+        //
+        //     function f1(a = 2,b,v) {}   console.log(f1.length); //->  0
+        //
+        //     let fff = function f3() {}; console.log(f3.name); //->会报错
+        //                                 console.log(fff.name); //->f3
+        // }
+        //
+        // {
+        //     function f2({a = 2, b = 4} = {}) {
+        //         console.log(a + b); //->6
+        //     }
+        //     f2();
+        //
+        //     function f3({x = 2,y = 5} = {}) {
+        //         console.log(x , y); //->2 5
+        //     }
+        //     f3();
+        //
+        //     function f4({x ,y } = { x:2 , y:5 }) {
+        //         console.log(x , y); //->2 5
+        //     }
+        //     f4();
+        //
+        //     f3({x:3});  //->    3 5
+        //     f4({x:3});  //->    3 undefined
+        //     f3({z:0});  //->    2 5
+        //     f4({z:0});  //->    undefined undefined
+        //
+        // }
+
+    </script>
+    </body>
+</html>

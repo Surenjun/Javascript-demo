@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #container{
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+        var Oct = document.getElementById("container");
+        //只读属性
+          Oct.clientWidth = 800;// width+padding
+        //Oct.offset        width + padding + border
+        //Oct.scrollWidth  //如果不超出，值和clientWidth是一样的，内容超出之后，代表超出部分整体的宽度
+
+        console.log(Oct.clientWidth); //->300
+
+        //IE9及以上
+        var cssObj = getComputedStyle(Oct);
+
+        //IE 所有
+        //var cssOct = Oct.currentStyle;
+
+        window.getComputedStyle =
+            window.getComputedStyle || function (goudan) {return goudan.currentStyle};
+
+        function getStyle(dom , attr){
+            return getComputedStyle(dom)[attr];
+        }
+
+        console.log(cssObj.borderTopWidth);
+    </script>
+    </body>
+</html>

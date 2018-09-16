@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        h3{
+            margin: 50px;
+        }
+        input{
+            margin-left: 50px;
+            width: 300px;
+            height: 25px;
+        }
+        ul{
+            margin-left: 50px;
+            margin-top: 20px;
+            width: 300px;
+            height: 300px;
+        }
+        ul li{
+            margin: 10px 0;
+        }
+    </style>
+</head>
+    <body>
+    <div>
+        <p>这是您第一次登录</p>
+        <p>本次登录时间:<span></span></p>
+    </div>
+
+    <h3>待办事项</h3>
+    <input type="text">
+
+    <ul>
+
+    </ul>
+
+    <script>
+        let aP = document.getElementsByTagName("p");
+
+        const time = new Date();
+
+        const YY = time.getFullYear(),
+              MM = time.getMonth() + 1,
+              TT = time.getDate(),
+              DD = time.getDay(),
+              HH = time.getHours(),
+              Min = time.getMinutes(),
+              Sec = time.getSeconds(),
+              Mil = time.getMilliseconds()
+        ;
+
+        const PrevTime = `${YY}.${MM}.${TT} ${HH}:${Min}:${Sec}`,
+              OverTime = new Date(time.getTime() +  24 * 60 * 60 * 1000);
+
+        const  json = JSON.stringify( {
+            timer:PrevTime,
+            name : "surenjun"
+        });
+
+        if( document.cookie ){
+
+            const str = JSON.parse(document.cookie.match(/\{.+/));
+            aP[0].innerHTML = `您上一次的登录时间为:<span> ${str.timer} </span>`;
+            aP[1].children[0].innerText = PrevTime;
+            document.cookie = `json = ${json};expires = ${OverTime}`;
+
+        }else{
+
+            document.cookie = `json = ${json};expires = ${OverTime}`;
+            aP[1].children[0].innerText = PrevTime;
+
+        }
+
+
+
+        {
+
+            let oIn = document.getElementsByTagName("input")[0],
+                oUl = document.getElementsByTagName("ul")[0]
+            ;
+
+            let len = localStorage.length
+
+            ;
+
+            for(let [index,value] of Object.entries(localStorage)){
+                const oLi = document.createElement("li");
+                oLi.innerText = value;
+                oUl.appendChild(oLi);
+            }
+
+            oIn.onkeydown = e => {
+
+                e = e || window.event;
+                if( e.keyCode === 13){
+
+                    const oLi = document.createElement("li");
+                    oLi.innerText = oIn.value;
+                    oUl.appendChild(oLi);
+
+                    localStorage.setItem( `${++len}` , oIn.value);
+
+                }
+            };
+
+        }
+    </script>
+    </body>
+</html>

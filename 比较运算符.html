@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        // var a = 0 || 10 && 12 || 9 && 0 && 11;
+        // alert( a ); //->12
+        // var b = 12 && 9 && 6 || 0 && 12 && false;
+        // alert( b ); //->6
+
+        //位运算
+        //任何一个整数&1
+
+        // var c = 10;
+        // alert( c & 1);  //->0
+        // var d = 9;
+        // alert(d & 1);   //->1
+        // var e = 8;
+        // alert( e & 1);  //->0
+
+        //判断奇偶
+        for(var i = 0;i <= 100;i++){
+            var j = i & 1;
+           if(j === 0){
+               console.log(i);
+           }
+        }
+
+        //alert ( 8 << 2); //->32 8 * 2 的2次方
+        //alert ( -8 << 2); //-32
+        //alert ( 4 << 3); //->32 4 * 2 的3次方
+
+        alert( 8 >> 1); //->4
+        alert( 8 >>> 1) //->4
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html><!--声明文档类型为html-->
+<html><!--根标签 超文本标记语言-->
+<!--99%是双标签 -->
+	<head><!--头部 不可视化标签-->
+		<meta charset="UTF-8"><!--utf-8 :国际编码-->
+		<!--网页三要素-->
+		<title>同学们-朱雀老师</title>
+	    <meta name="Keywords" content="认真上课"><!--关键词-->
+		<meta name="Description" content="描述">
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			li{list-style:none;}
+			a{text-decoration:none;}
+			div{
+				width: 100px;
+				height: 100px;
+				background-color:lightpink;
+				/*
+					复合写法 动画名称 时间 延迟 速度曲线 运行次数 是否循环
+				*/
+				animation:move 2s 1s linear infinite alternate;
+				/*
+					animation-name:;此次动画的名称 见名知意
+					animation-duration:;此次动画的时间
+					animation-delay:;此次动画延迟多久开始
+					animation-timing-function:;此次动画的运动曲线
+					ease 默认 慢快慢
+					ease-in 慢入
+					ease-out 慢出
+					ease-in-out慢入慢出
+					linear 匀速
+					cubic-bezier(0,.85,1,-0.27)贝塞尔曲线
+					animation-iteration-count:;此次动画的播放次数
+					number 数字    infinite 无限次
+
+					animation-direction:;此次动画是否轮流反向播放
+					normal 正常 默认 
+					reverse 反向
+					alternate 正向再反向
+					alternate-reverse 先反向再正向
+
+					animation-play-state:;运动执行状态
+					paused 暂停
+					running 运动
+
+					animation-fill-mode:;规定动画的第一帧和最后一帧的状态
+					none 默认 原始状态--动画--原始状态
+					forwards 原始动态--动画--停在最后一帧
+					backwards 进入动画0%--动画--原始状态
+					both 进入动画0%--动画--停在最后一帧
+				*/
+			}
+			/*
+				决定运动的关键帧
+			*/
+			@keyframes move{
+				/* from{width:100px;}
+				to{width:800px;} */
+				0%,25%{width: 300px; background-color:pink;}
+				25%,50%{width:600px; background-color:green;}
+				50%,75%{width:700px; background-color:green;}
+				75%,100%{width:800px;background-color:red;}
+			}
+			div:hover{
+				animation-play-state:paused;
+			}
+		</style>
+	</head>
+	<body> <!--身体:网页的内容.可视化标签-->
+		<div></div>
+	</body>
+</html>
+
+

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #container{
+            position: relative;
+            width: 1300px;
+            height: 590px;
+            margin: 50px auto;
+            border:3px solid pink;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .image-box{
+            position: absolute;
+            width: auto;
+            height: auto;
+            border: 10px solid #fff;
+            transition: left 1s, top 1s ,transform 0.6s  linear,display 2s;
+        }
+
+        .image-box.on{
+            position: absolute;
+            left: 510px;
+            top: 140px;
+            z-index: 99;
+        }
+        .image-box img{
+            height: 250px;
+            transition: transform 0.6s  linear;
+        }
+        .image-box img.Img{
+            transform: rotateY(90deg);
+            display: none;
+        }
+        .image-box img.zhuan{
+            transform: rotateY(180deg);
+            display: block;
+        }
+    </style>
+</head>
+    <body>
+        <div id="container">
+
+            <div class="image-box on">
+                <img src="images/x1.jpg"  class="img">
+                <img src="images/x2.jpeg" class="Img">
+            </div>
+
+            <div class="image-box">
+                <img src="images/x3.jpg" class="img">
+                <img src="images/x4.jpeg" class="Img">
+            </div>
+
+            <div class="image-box">
+                <img src="images/x5.jpg"  class="img">
+                <img src="images/x6.jpeg" class="Img">
+            </div>
+
+            <div class="image-box">
+                <img src="images/x7.jpeg" class="img" >
+                <img src="images/x8.jpg" class="Img" >
+            </div>
+
+            <div class="image-box">
+                <img src="images/x9.jpg"  class="img">
+                <img src="images/x10.jpeg" class="Img">
+            </div>
+
+
+        </div>
+    <script>
+            var prev = 0;
+            var bool = true;
+            var oBox = document.querySelectorAll("#container .image-box"),
+                oImg = document.querySelectorAll("#container .image-box .img"),
+                oImg1 = document.querySelectorAll("#container .image-box .Img")
+            ;
+
+
+            !function () {
+                for (var i = 0;i<oBox.length;i++){
+
+                    var x = Math.floor(Math.random() * 1100) + "px",
+                        y = Math.floor(Math.random() * 400) + "px",
+                        z = Math.floor(Math.random() * 90)
+                    ;
+                    if(i !== 0){
+                        oBox[i].className = "image-box";
+                        oBox[i].style.left = x;
+                        oBox[i].style.top = y;
+                        oBox[i].style.transform = 'rotate('+ z +'deg)';
+                    }
+
+                    !function (index) {
+
+                        oBox[index].onclick = function () {
+
+                            console.log(prev);
+                            oBox[prev].style.transform = "rotateY(180deg)";
+                            oImg[prev].style.transform = "rotateY(0deg)";
+                            oImg[prev].style.display = "block";
+                            oImg1[prev].className = "Img";
+
+                                if(index !== prev){
+                                    oBox[0].className = "image-box";
+                                    this.style.left = 440 + "px";
+                                    this.style.top = 140 + "px";
+                                    this.style.transform = 'rotate(360deg)';
+                                    this.style.zIndex = "9";
+                                    for(var j = 0;j<oBox.length;j++){
+
+
+                                    var x = Math.floor(Math.random() * 1100) + "px",
+                                        y = Math.floor(Math.random() * 400) + "px",
+                                        z = Math.floor(Math.random() *  360)
+                                    ;
+                                    if(j !== index) {
+
+                                        oBox[j].style.left = x;
+                                        oBox[j].style.top = y;
+                                        oBox[j].style.transform = 'rotate(' + z + 'deg)';
+                                        oBox[j].style.zIndex = "1";
+                                    }
+
+
+                                        bool = true;
+                                }
+
+                            }
+
+
+                                else{
+                                    console.log(bool);
+                                    if(bool) {
+                                        this.style.transform = "rotateY(180deg)";
+                                        oImg[index].style.transform = "rotateY(90deg)";
+                                        oImg[index].style.display = "none";
+                                        oImg1[index].className = "zhuan";
+
+                                    }else{
+                                        this.style.transform = "rotateY(360deg)";
+                                        oImg[index].style.transform = "rotateY(180deg)";
+                                        oImg[index].style.display = "block";
+                                        oImg1[index].className = "Img";
+                                    }
+                                    bool = !bool;
+
+                                }
+
+
+                                prev = index;
+
+
+
+
+
+
+
+                        };
+
+                    }(i)
+                }
+            }();
+
+
+    </script>
+    </body>
+</html>

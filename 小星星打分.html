@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #wrap{
+            width: 320px;
+            height: 75px;
+            margin: 50px auto;
+            font-size: 12px;
+            line-height: 75px;
+            user-select: none;
+        }
+        #wrap span,#wrap ul,#wrap p{
+            float: left;
+        }
+        #wrap span.title{
+            color: red;
+        }
+        #wrap ul{
+            margin-top: 28px;
+        }
+        #wrap ul li{
+            float: left;
+            width: 19px;
+            height: 19px;
+            background-image: url("images/star.png");
+            cursor: pointer;
+        }
+        #wrap ul li.on{
+            background-position: 0 19px;
+        }
+        #wrap p{
+            width: 120px;
+            height: 73px;
+            margin-left: 30px;
+            border: 1px solid #bbb;
+            line-height: 20px;
+            color: #000;
+        }
+        #wrap p span{
+            display: none;
+        }
+        #wrap p span.on{
+            display: block;
+        }
+
+    </style>
+</head>
+    <body>
+    <div id="wrap">
+        <span class="title">星级打分：</span>
+        <ul>
+            <li></li><li></li><li></li><li></li><li></li>
+        </ul>
+        <p>
+            <span class="on">提示：请认真地给当前文档打分！</span>
+            <span>很差</span>
+            <span>较差</span>
+            <span>一般</span>
+            <span>很好！</span>
+            <span>炒鸡棒！</span>
+        </p>
+    </div>
+    <script>
+            (function () {
+
+                var aStars = document.querySelectorAll("#wrap ul li"),
+                    aSpans = document.querySelectorAll("#wrap p span"),
+                    aUl = document.querySelector("#wrap ul"),
+
+                    len = aStars.length,
+                    SpanIndex = 0;
+
+                var basic = -1;
+
+                for(var i = 0; i < len; i++){
+                    var domStars = aStars[i];
+                    domStars.index = i;
+                    domStars.onmouseenter = add;
+                    domStars.onclick = add1;
+                }
+
+                function  add() {
+                    each(this.index);
+                }
+
+                function  add1() {
+                    each(this.index);
+                    basic = this.index;
+                }
+
+                aUl.onmouseleave = function () {
+                    each(basic);
+                };
+                function each(x) {
+                    for(var j = 0;j <len; j++){
+                        aStars[j].className = j <= x ? "on":"";
+                    }
+                    aSpans[SpanIndex].className = "";
+                    SpanIndex = x + 1;
+                    aSpans[SpanIndex].className = "on";
+
+                }
+            })()
+    </script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+
+        //for in是用来遍历对象的,但是它也会把它原型里的东西遍历出来
+        //数组是对象，它也可以被for in遍历 但是它的下标是 "0" "1" "2" "3" 有引号的
+        //也能把对象的自定义的属性遍历出来
+        //for in遍历数组并不合适
+        //类数组转换成真正数组的方法 arr.slice.call(arr);
+        //call apply bind 不兼容IE 678
+
+        var json = "{\"name\":\"乌拉\",\"age\":38}";
+
+        var json1 = "[{\"name\":\"阿飞\"},{\"name\":\"乌拉\"}]";
+
+        //1.序列化与反序列化 不兼容IE7以下
+
+            // 将JS里面的对象转换成json字符串的方法：(反序列化)
+            var j = JSON.stringify(json);
+            //将字符串转化为对象 (序列化)
+            var z = JSON.parse(json)
+
+    </script>
+    </body>
+</html>

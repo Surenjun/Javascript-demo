@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+         <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+        //1.extend
+
+            $.extend({
+                x : 10
+            });
+
+            $.fn.extend({
+                "goudan" : function () {
+                    //console.log(this);
+                    this.html(123).css("color" , 'red');
+                }
+            });
+
+            //console.log( $.x );
+            $("#wrap").goudan();
+
+        //2.show hide toggle ->"fast" "normal" "slow"
+            show("fast",function () {
+                //里面为回调函数
+            })
+
+        //3.fadeIn fadeOut fadeTo ->fadeTo(2000,0.5)
+
+        //4.slideUp slideDown slideToggle
+
+        //5.animate  animate({
+        //              width : 500,
+        //              marginLeft : 300
+        //           },2000)
+
+        //6.stop 是上一次的动画停止
+
+            /*$("#wrap p").hover(function () {
+                $(this).stop().animate({
+                    height : 200
+                } , 500);
+            } , function(){
+                $(this).stop().animate({
+                    height : 40
+                } , 500);
+            });*/
+
+        //7.queue     1.delay()->延迟的后面必须是一个队列
+
+            //$("#wrap").fadeOut(1000).delay(2000).fadeIn(1000);
+            //$("#wrap").delay(2000).fadeOut(1000);
+
+            /*$("#wrap")
+               .delay(2000)
+               .queue(function () {
+                   $(this).css("background-color" , "pink");
+               })
+               .css("backgroundColor" , "green");*/
+
+           /* $("#wrap")
+                .delay(2000)
+                .queue(function () {
+                    $(this).css("background-color" , "pink");
+                    $(this).dequeue();
+                })
+                .delay(2000)
+                .queue(function () {
+                    $(this).css("backgroundColor" , "green");
+                    $(this).dequeue();
+                });
+
+            $("#wrap").fadeOut();*/  //dequeue是清除当前的队列 当你添加一个队列时 需要清除上一个队列 才能进入到下一个队列
+    </script>
+    </body>
+</html>

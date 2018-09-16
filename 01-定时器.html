@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+
+        </div>
+    <script>
+
+
+        //requestAnimationFrame
+        //cancelAnimationFrame
+
+        var a = 0;
+              function fn(){
+                   a++;
+                   alert(a);
+                   return function(){alert(a);};
+              }
+
+        setInterval(fn(),1000);//alert(a)只会执行一次,之后过3秒钟执行return里的函数
+        setInterval(fn,1000); //alert(a)会循环执行,return里的函数一次都不会执行
+
+        // setTimeout(function(){
+        //     alert( 1 );
+        // });
+        //
+        // alert( 2 ); //alert(2)会比alert(1)先执行 延迟性
+
+
+        // setTimeout(a , 2000 , 5 , 3);
+        //
+        // function a(x,y){
+        //     alert( x+y );
+        // }  //给定时器传参数
+
+        //返回函数本身 用于匿名函数
+        !function(){
+            console.log(1111);
+
+            //在匿名函数调用自己的时候，只能使用callee了
+            //在严格模式下，不支持这个api
+            console.log(arguments.callee);
+
+        }();
+
+    </script>
+    </body>
+</html>

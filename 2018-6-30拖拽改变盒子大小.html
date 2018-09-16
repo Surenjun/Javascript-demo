@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+        body{
+            user-select: none;
+        }
+        #wrap{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        #wrap > span{
+            cursor: pointer;
+        }
+        #wrap > span.topLeft{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+        }
+        #wrap > span.topMiddle{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            margin-left: -5px;
+            background-color: black;
+        }
+        #wrap > span.topRight{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+        }
+        #wrap > span.middleLeft{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            margin-top: -5px;
+            background-color: black;
+        }
+        #wrap > span.middleRight{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            margin-top: -5px;
+            background-color: black;
+        }
+        #wrap > span.bottomLeft{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+        }
+        #wrap > span.bottomRight{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+        }
+        #wrap > span.bottomMiddle{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            margin-left: -5px;
+            background-color: black;
+        }
+
+    </style>
+</head>
+    <body>
+    <div id="wrap">
+        <span class="topLeft"></span>
+        <span class="topMiddle"></span>
+        <span class="topRight"></span>
+
+        <span class="middleLeft"></span>
+        <span class="middleRight"></span>
+
+        <span class="bottomLeft"></span>
+        <span class="bottomMiddle"></span>
+        <span class="bottomRight"></span>
+    </div>
+    <script>
+
+        (function () {
+
+            var oWrap = document.getElementById("wrap"),
+                aDiv = oWrap.getElementsByTagName("span")
+            ;
+
+            for(var i = 0,len = aDiv.length;i < len;i++){
+                aDiv[i].index = i;
+            }
+
+            oWrap.addEventListener("mousedown",function (e) {
+
+                e = e || window.event;
+
+                var x = e.clientX - this.offsetLeft,
+                    y = e.clientY - this.offsetTop
+                ;
+
+                if(e.target.nodeName.toLocaleLowerCase() === "span"){
+
+                    var  W = this.offsetWidth,
+                         H = this.offsetHeight;
+                         x = this.offsetLeft;
+                         y = this.offsetTop;
+
+
+                    document.onmousemove = fn1.bind(e.target);
+
+                    function fn1(e) {
+
+                        var _height,_width,_left,_top;
+
+                       switch (this.index){
+
+                           case 0:
+                               _height =  y - e.clientY + H;
+                               _width =  x - e.clientX + W;
+                               _left = e.clientX;
+                               _top =  e.clientY;
+                               break;
+                           case 1:
+                               _height =  y - e.clientY + H;
+                               _width =  W;
+                               _left = x;
+                               _top =  e.clientY;
+                               break;
+                           case 2:
+                               _height =  y - e.clientY + H;
+                               _width =  e.clientX - x;
+                               _left = x;
+                               _top =  e.clientY;
+                               break;
+                           case 3:
+                               _height = H;
+                               _width =  x - e.clientX + W;
+                               _left = e.clientX;
+                               _top =  y;
+                               break;
+                           case 4:
+                               _height = H;
+                               _width =  e.clientX - x;
+                               _left = x;
+                               _top =  y;
+                               break;
+                           case 5:
+                               _height = e.clientY - y;
+                               _width =  x - e.clientX + W;
+                               _left = e.clientX;
+                               _top =  y;
+                               break;
+                           case 6:
+                               _height = e.clientY - y;
+                               _width =  W;
+                               _left = x;
+                               _top =  y;
+                               break;
+                           case 7:
+                               _height = e.clientY - y;
+                               _width = e.clientX - x;
+                               _left = x;
+                               _top =  y;
+                               break;
+                       }
+                        oWrap.style.width = _width + "px";
+                        oWrap.style.height = _height + "px";
+                        oWrap.style.top = _top + "px";
+                        oWrap.style.left = _left + "px";
+                    }
+
+                        document.onmouseup =function(){
+                            this.onmousemove = null;
+                        };
+
+                        return;
+
+                }
+
+                document.addEventListener("mousemove",fn);
+
+                function fn(e) {
+                    e = e || window.event;
+                    oWrap.style.left = e.clientX - x + "px";
+                    oWrap.style.top = e.clientY - y + "px";
+                }
+
+                document.addEventListener("mouseup",function () {
+                    this.removeEventListener("mousemove",fn)
+                })
+
+            },false);
+
+
+
+        })();
+
+
+    </script>
+    </body>
+</html>

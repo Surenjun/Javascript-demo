@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+         <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+
+       /* attr 操作不合法的标签属性
+       *        attr("name","苏仁君"); attr({});
+       *
+       *  prop 操作合法的标签属性
+       *
+       *  removeAttr 和 removeProp
+       *
+       *  removeClass addClass toggleClass
+       *
+       *  html("<p> 555 </p>") //和innerHtml一样 不传值会获取
+       *    $w.html($w.html + "<p>123</p>");拼接  但会替换事件！
+       *
+       *  text对应innerText
+       *
+       *  val 对应的获取value
+       * */
+
+
+       //关于API的返回值
+
+            //功能函数返回的是原本的JQuery对象 所以能进行链式操作
+
+            /*$("#wrap p")              => 返回的是$("#wrap p")
+               .css("color", 'red')     => 返回的是$("#wrap p")
+               .html("123")             => 返回的是$("#wrap p")
+               .attr("afei" , "阿飞");*/
+
+           /*$("#wrap p").eq(1)        => 返回的是$("#wrap p").eq(1)
+              .css("color", 'red')     => 返回的是$("#wrap p").eq(1)
+              .html("123")             => 返回的是$("#wrap p").eq(1)
+              .attr("afei" , "阿飞");*/
+
+           // $("#wrap").css("width") =>返回的是个字符串
+    </script>
+    </body>
+</html>

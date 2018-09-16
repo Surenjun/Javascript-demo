@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+
+        let ar = [1,2,3,4,5,6];
+
+        let arrIterator = ar[Symbol.iterator]();
+
+        /*console.log(arrIterator.next());
+          console.log(arrIterator.next());
+          console.log(arrIterator.next());
+          console.log(arrIterator.next());
+          console.log(arrIterator.next());
+          console.log(arrIterator.next());
+          console.log(arrIterator.next());*/
+
+        //原理就是调用next()取值
+
+        //有Iterator接口的 直接能用 let of 遍历
+        for (let arrIteratorElement of arrIterator) {
+            console.log(arrIteratorElement);
+        }
+
+        /***********************给json对象部署Iterate*****************************/
+
+        let obj = {
+               "name" : "苏仁君",
+               "age" : 15,
+               [Symbol.iterator] : function(){
+
+                   let arr = [];
+                   let index = 0;
+                   let length;
+
+                   for (let key in this) {
+                       arr.push(this[key]);
+                   }
+
+                   length = arr.length;
+
+                   return {
+                       next : function(){
+                           let done = index >= length;
+                           return {
+                               value : arr[index++],
+                               done : done
+                           }
+                       }
+                   };
+               }
+           };
+
+        for(let [index,value] of Object.entries(obj)){
+            console.log(index,value);
+        }
+
+        /************************************************************************/
+
+        let obj1 = {
+            "book":"咿呀咿呀哦",
+            "price":99
+        };
+
+        let arr1 = Object.keys(obj1),
+            arr2 = Object.values(obj1)
+        ;
+        console.log(arr1,arr2);
+
+        /**********************************************************************/
+
+        let arr3 = ["aaa","bbb","ccc","ddd","eee","fff","ggg"];
+
+        console.log(Object.entries(arr3)); //-> 字符串类型
+        console.log(arr3.entries());
+
+        for (let [index,value] of arr3.entries()) {
+            console.log(index , value);   //->下标为数字
+        }
+
+        /*******************简化Iterate*****************************************/
+
+        let obj3 = {
+            "name":"surenjun1",
+            "age":21
+        };
+
+        for(let [index,value] of Object.entries(obj3)){
+            console.log(index, value);
+        }
+
+        /*******************Iterate接口实现解构赋值*********************************/
+
+        let obj4 = [
+
+            {"name":"surenjun","age":18,},
+            {"name":"surenjun1","age":19,},
+            {"name":"surenjun2","age":20,}
+
+        ];
+
+        let arr5 = [],
+            obj5 = new Map();
+        for(let [index,value] of obj4.entries()){
+            obj5.set(index,value);
+        }
+
+        console.log(obj5);
+    </script>
+    </body>
+</html>

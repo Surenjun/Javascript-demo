@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #wrap{
+            width: 400px;
+            border: 1px solid #aaa;
+            border-radius:15px;
+            margin: 50px auto;
+        }
+        #wrap ul{
+            padding: 30px 0;
+        }
+        #wrap ul li{
+            width: 100%;
+            height: 60px;
+            background: url(images/ck.png) no-repeat 20px 20px;
+            border-bottom: 1px solid #aaa;
+            line-height: 60px;
+            text-indent: 70px;
+            cursor: pointer;
+
+        }
+        #wrap ul li.on{
+            background-image: url("images/cked.jpg");
+        }
+        #all{
+            width: 100%;
+            height: 60px;
+            background: url(images/ck.png) no-repeat 20px 20px;
+            line-height: 60px;
+            text-indent: 70px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+        #all.on{
+            background-image: url("images/cked.jpg");
+        }
+
+    </style>
+</head>
+    <body>
+    <div id="wrap">
+
+        <ul id="list">
+
+        </ul>
+
+        <p id="all">全选</p>
+
+    </div>
+    <script>
+
+            var oList = document.getElementById("list"),
+                oP = document.getElementById("all"),
+                oLi = oList.getElementsByTagName("li"),
+                oOn = oList.getElementsByClassName("on")
+            ;
+
+            var length = 7;
+
+            for(var i = 0; i< length; i++) {
+                oList.innerHTML += "<li> Number"+ i + "</li>";
+            }
+
+            for(var j = 0; j< length; j++) {
+                oLi[j].onclick = fn;
+            }
+
+            oP.onclick = fn1;
+
+            function fn() {
+
+                this.className = this.className ? "": "on";
+
+                oP.className = oLi.length === oOn.length ? "on" : "";
+            }
+
+            function fn1(){
+
+                this.className = this.className ? "": "checked";
+
+                for(var j = 0;j < length; j++) {
+                    oLi[j].className =  this.className ? "on" : "";
+                }
+            }
+
+
+
+
+    </script>
+    </body>
+</html>

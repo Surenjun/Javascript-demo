@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #container{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 60px auto;
+            border: 1px solid green;
+            border-radius: 50%;
+        }
+        #container div{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            margin-left: -20px;
+            margin-top: -20px;
+            border-radius: 50%;
+            background-color: #666666;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+   <div></div>
+</div>
+<script src="2018-6-23运动框架.js"></script>
+<script>
+
+    var oCon = document.getElementById("container"),
+        r = parseInt(getComputedStyle(oCon).width)/2
+    ;
+    var index = 1,c = 0;
+
+    !function move() {
+
+        var dom = document.createElement("div"),
+            aDiv = oCon.getElementsByTagName("div");
+        var str = "#";
+
+
+        aDiv[1] && (aDiv[1].style.opacity = 0);
+        aDiv[7] && (oCon.removeChild(oCon.children[2]));
+
+        for(var i = 0;i < 6;i++){
+            var color = Math.floor(Math.random()*16).toString(16);
+            str += color;
+        }
+
+        dom.style.backgroundColor = str;
+
+        dom.style.left = aDiv[0].style.left;
+        dom.style.top = aDiv[0].style.top;
+
+        oCon.appendChild(dom);
+
+        c -= 9;
+
+        var left = r + Math.cos(c * Math.PI / 180)*r;
+        var top = r - Math.sin(c * Math.PI / 180)*r;
+
+        Move(aDiv[0],{left:left,top:top},100,"linear",move)
+    }();
+
+
+</script>
+</body>
+</html>

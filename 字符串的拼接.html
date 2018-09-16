@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+        #container .c-box{
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: pink;
+        }
+        #container div{
+
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div class="c-box">点我</div>
+    </div>
+    <script>
+
+        var oContainer = document.getElementById('container'),
+            OcBox = document.getElementsByClassName('c-box')[0];
+
+            //     OcBox.onclick = function (){
+            //     var str = '';
+            //     for(var i =0;i < 10;i++){
+            //         str += '<div>'+ i +'</div>';
+            //     }
+            //     oContainer.innerHTML +=  str;
+            // };
+
+        var length = 5;
+
+            for(var i = 0;i<length;i++){//"<div style='margin-left:"+ mLeft +"px;'>" + i + "</div>";
+
+                var a = (i<3?i:4-i)*50;
+                    // (i>=mid?(length-1-i):i)*50;
+                oContainer.innerHTML += "<div style='margin-left:" + a + "px;'>" + i + "</div>";
+            }
+    </script>
+</body>
+</html>

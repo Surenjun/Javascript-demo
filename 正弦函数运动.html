@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #container{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 60px auto;
+            border: 1px solid green;
+            border-radius: 50%;
+        }
+        #container .circle{
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            margin-left: -5px;
+            margin-top: -5px;
+            border-radius: 50%;
+            background-color: red;
+        }
+        #container span{
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            margin-left: -5px;
+            margin-top: -5px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+    <body>
+        <div id="container">
+            <div class="circle"></div>
+        </div>
+    <script>
+        var Ocat = document.getElementById("container"),
+            Ocir = Ocat.querySelector(".circle"),
+            r = parseInt(getComputedStyle(Ocat).width)/2
+        ;
+
+        // 正弦函数
+        // var x = 0;
+        // setInterval(function () {
+        //
+        //     x += 1/50*Math.PI;
+        //     var y = Math.sin(x);
+        //
+        //     var left = x*50 + r;
+        //     var top = -y*150 + r;
+        //
+        //     var css = "left:"+left+"px;top:"+top+"px;";
+        //
+        //     Ocir.style.cssText = css;
+        //     console.log(css);
+        //     Ocat.innerHTML += "<span style='"+css+"'></span>";
+        // },100);
+
+
+        // 余弦函数
+        // var x = 0;
+        // setInterval(function () {
+        //
+        //     x += 1/50*Math.PI;
+        //     var y = Math.cos(x);
+        //
+        //     var left = x*50 + r;
+        //     var top = -y*150 + r;
+        //
+        //     var css = "left:"+left+"px;top:"+top+"px;";
+        //
+        //     Ocir.style.cssText = css;
+        //     console.log(css);
+        //     Ocat.innerHTML += "<span style='"+css+"'></span>";
+        // },100);
+
+        var c = 0,
+            str;
+        console.log(Ocir);
+        setInterval(function () {
+            c--;
+
+            var left = r + Math.cos(c*Math.PI/180)*r;
+            var top = r - Math.sin(c*Math.PI/180)*r;
+
+            Ocir.style.left = left + "px";
+            Ocir.style.top = top + "px";
+            console.log(left);
+        },20)
+    </script>
+    </body>
+</html>

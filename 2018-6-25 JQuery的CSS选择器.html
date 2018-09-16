@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+       /* offset ->距离文档的距离 会把margin计算进去
+
+            offset({
+                left:50,
+                top:50
+            }) 返回的是JQuery对象
+
+          position ->距离定位父级边界的距离，不会把margin计算进去
+
+          offset,position获得都是 {left,top}对象 offset是可写属性 position不可写
+          */
+
+       document.documentElement.scrollLeft || document.body.scrollLeft;
+
+       /*scrollTop(),scrollLeft(); */
+
+       //width()        -> 本身的width  可设置
+       //innerWidth()   -> width + padding 可设置 只能改的是width值
+       //outerWidth()   -> width + padding + border 可设置 只能改的是width值
+
+       //JQuery 没有获取scrollWidth的值 要转成js对象
+
+        //hasClass 检查当前元素是否有这个类 有就返回true 相当于 is("",+class);
+
+        //filter(".con") 筛选有.con这个类型的JQuery对象
+
+        //map()将一组元素转换成其它数组
+
+        //map()与each()的区别
+        //map->会改变返回值 一个伪数组
+
+           $("p").append( $("input").map(function(){
+               return $(this).val();
+           }).get().join(", ") );
+
+        //has()
+
+        $("div").has("p");  //->筛选div的儿子中有p的 并返回div这个父级
+
+        //no() ->与filter对立的面 去掉什么
+
+        //slice(a,b) ->截取 返回新的对象
+
+        //children() 只选中儿子 children("p")
+
+        //find() 找的是所有后代  必须传参  find("*")->找到所有的后代
+
+        //next() nextAll() nextUntil() 同级选择器 向下
+        //prev() prevAll() prevUntil() 同级选择器 向下
+
+        //siblings() 选中全部的兄弟 不包括他自己
+
+        //offsetParent() ->找定位父级 parent()->父级 parents()->父代们 parentsUntil
+
+        //contents()
+
+        //end()
+
+    </script>
+    </body>
+</html>

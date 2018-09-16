@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #container{
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: pink;
+        }
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+         var oCon = document.getElementById("container");
+
+         var speedX = 5,
+             speedY = 5,
+             _left = oCon.offsetLeft,
+             _top = oCon.offsetTop,
+             maxX = window.innerWidth - oCon.offsetWidth,
+             maxY = window.innerHeight - oCon.offsetHeight
+         ;
+
+         !function move() {
+
+             _left += speedX;
+             _top += speedY;
+
+             if(_left > maxX || _left < 0){
+                 _left = Math.max(0,_left);
+                 _left = Math.min(_left,maxX);
+                 speedX = -speedX;
+             }
+             if(_top > maxY || _top < 0){
+                 _top = Math.max(0,_top);
+                 _top = Math.min(_top,maxY);
+                 speedY = -speedY;
+             }
+
+             oCon.style.left = _left + "px";
+             oCon.style.top = _top + "px";
+             requestAnimationFrame(move);
+
+         }();
+
+         window.onresize = function () {
+             maxX = window.innerWidth - oCon.offsetWidth;
+             maxY = window.innerHeight - oCon.offsetHeight;
+         }
+
+    </script>
+    </body>
+</html>

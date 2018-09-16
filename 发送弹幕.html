@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        .clearfix:after{content:'';height:0;clear: both}
+        img{border:none}
+
+        #container{
+            position: relative;
+            margin: 20px auto;
+            width: 300px;
+            height: 700px;
+        }
+        #container #top{
+            position: relative;
+            height: 350px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+        #container #list{
+            position: absolute;
+            bottom: 0;
+            width: 300px;
+        }
+        #container  li{
+            width: 100%;
+            margin-bottom: 10px;
+            border-bottom:5px solid #000 ;
+        }
+        form{
+            margin-top: 10px;
+        }
+        #container textarea{
+            width: 296px;
+            height: 50px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="top">
+            <ul id="list"></ul>
+        </div>
+
+        <form action="">
+            <textarea name="su" id="su" cols="30" rows="10"></textarea>
+        </form>
+
+        <input id="inp" type="button" value="提交">
+    </div>
+    <script>
+
+        var oInp = document.getElementById('inp'),
+            oSu = document.getElementById('su'),
+            oList = document.getElementById('list')
+        ;
+
+        oInp.onclick = function () {
+            var content = oSu.value;
+            !(content === "") && (oList.innerHTML += '<li>' + content + '</li>');
+            oSu.value = ""
+        }
+
+    </script>
+</body>
+</html>

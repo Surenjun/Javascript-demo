@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+        #container{
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border:15px solid rebeccapurple;
+            border-radius:50%;
+            background-color: pink;
+        }
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+
+        </div>
+    <script>
+        var con = document.getElementById("container");
+
+        var left = con.offsetLeft,
+            speedX = 5,
+            speedY = 5,
+            bool = true
+        ;
+        var maxX = document.documentElement.clientWidth - con.offsetWidth,
+            maxY = document.documentElement.clientHeight - con.offsetHeight
+        ;
+
+        function change() {
+            if(bool){
+
+                var left = con.offsetLeft,
+                    top = con.offsetTop;//放在函数里做为局部变量就能用
+
+                !function move() {
+
+                    left += speedX;
+                    top += speedY;
+                    if(left <= 0 || left>= maxX){
+                        left = Math.max(0,left);
+                        left = Math.min(maxX,left);
+                        speedX = -speedX;
+                    }
+                    if(top <= 0 || top>= maxY){
+                        top = Math.max(0,top);
+                        top = Math.min(maxY,top);
+                        speedY = -speedY;
+                    }
+                    con.style.left = left + "px";
+                    con.style.top = top + "px";
+                    set = requestAnimationFrame(move);
+                }()
+            }
+
+            else{
+                    cancelAnimationFrame(set);
+                }
+                bool = !bool;
+            }
+            change();
+    </script>
+    </body>
+</html>

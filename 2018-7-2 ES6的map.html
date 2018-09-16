@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+
+        /**********************  set  *********************/
+
+        var arr = [1,2,3,4,3,2,3,5,6];
+        var arr1 = [];
+        arr1 = [...new Set(arr)];
+        console.log(arr1);
+
+        var arr2 = Array.from(new Set(arr));
+        console.log(arr2);
+
+        //Array.from()可以将 Set 结构转为数组
+        /**********************  map  *********************/
+            //JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），
+            // 但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
+
+        const m = new Map();
+        const o = {p: 'Hello World'};
+
+        m.set(o, 'content');
+        m.get(o); // "content"
+        console.log(m[o]);
+        m.has(o); // true
+        m.delete(o); // true
+        m.has(o); // false
+
+        const map = new Map([
+            ['name', '张三'],
+            ['title', 'Author']
+        ]);
+
+        map.get('name'); // "张三"
+        map.size;// 2
+        map.has('name'); // true
+        map.has('title'); // true
+        map.get('title'); // "Author"
+
+        const myMap = new Map().set(true, 7).set({foo: 3}, ['abc']);
+        const arr5 = [...myMap]; //map转化为数组
+        console.log(arr5);
+
+        //数组转map
+        new Map([
+            [true, 7],
+            [{foo: 3}, ['abc']]
+        ]);
+
+        // Map {
+        //   true => 7,
+        //   Object {foo: 3} => ['abc']
+        // }
+
+        //map转换为对象
+        function strMapToObj(strMap) {
+            let obj = Object.create(null);
+            for (let [k,v] of strMap) {
+                obj[k] = v;
+            }
+            return obj;
+        }
+
+       /* const myMap = new Map().set('yes', true).set('no', false);
+        strMapToObj(myMap);
+                // { yes: true, no: false }
+
+        //map转化为JSON
+
+        //1.键名为字符串 => 转为对象json
+            function strMapToJson(strMap) {
+                return JSON.stringify(strMapToObj(strMap));
+            }
+            let myMap = new Map().set('yes', true).set('no', false);
+            strMapToJson(myMap);
+            // '{"yes":true,"no":false}'
+
+        //2.键名有非字符串 =>转换为数据json
+            function mapToArrayJson(map) {
+                return JSON.stringify([...map]);
+            }
+            let myMap = new Map().set(true, 7).set({foo: 3}, ['abc']);
+            mapToArrayJson(myMap)
+            // '[[true,7],[{"foo":3},["abc"]]]'*/
+    </script>
+    </body>
+</html>

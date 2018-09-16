@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        body{
+            background-color: #222;
+            overflow: hidden;
+        }
+
+        #wrap{
+            position: relative;
+            width: 512px;
+            height: 768px;
+            margin: 10px auto;
+            background: url("img/bg_1.jpg") 0 0;
+            overflow: hidden;
+        }
+        #wrap.active{
+            animation: bgMove 30s linear infinite;
+        }
+        @keyframes bgMove {
+            0% {background-position:0 0;}
+            100% {background-position:0 768px;}
+        }
+        #diff{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #diff h1{
+            padding-top: 100px;
+            color: #fff;
+            text-align: center;
+        }
+        #diff ul{
+            margin-top: 200px;
+        }
+        #diff ul>li{
+            width: 200px;
+            height: 35px;
+            margin: 40px auto;
+            background-color: #fff;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 35px;
+            cursor: pointer;
+        }
+        #diff ul>li:hover{
+            background-color: pink;
+            color: #fff;
+        }
+        #diff ul>li.l4{
+            color: #f00;
+        }
+        #content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes fadeOut {
+            0%{opacity:1}
+            100%{opacity:0}
+        }
+        #content .score{
+            position: absolute;
+            top: 20px;
+            left: 0;
+            text-indent: 20px;
+            font-size:14px;
+            font-weight: bolder;
+            color: #fff;
+        }
+        #wrap #myPlane{
+            position: absolute;
+            width: 70px;
+            height: 60px;
+            background: url("img/plane_1.png") no-repeat center/cover;
+        }
+        #wrap  #content .fire{
+              position: absolute;
+              width: 15px;
+              height: 30px;
+              background: url("img/fire.png") no-repeat center/cover;
+        }
+        #wrap  #content .enemy{
+            position: absolute;
+            width: 54px;
+            height: 40px;
+            background: url("img/enemy_small.png") no-repeat center/cover;
+        }
+        #wrap  #content .bigEnemy{
+            position: absolute;
+            width: 170px;
+            height: 130px;
+            background: url("img/enemy_big.png") no-repeat center/cover;
+        }
+    </style>
+</head>
+    <body>
+    <div id="wrap" class="active">
+
+        <!--<div id="diff">-->
+            <!--<h1 class="title">飞机大战</h1>-->
+            <!--<ul>-->
+                <!--<li>简单</li>-->
+                <!--<li>中等</li>-->
+                <!--<li>困难</li>-->
+                <!--<li class="l4">变态模式</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div id="content">
+            <span class="score">0000000</span>
+        </div>
+
+        <div id="myPlane">
+
+        </div>
+    </div>
+
+    <script>
+
+(function () {
+
+    var oWrap = document.getElementById("wrap"),
+        myPlane = document.getElementById("myPlane"),
+        oContent = document.getElementById("content"),
+        oScore = document.getElementsByTagName("span")[0]
+    ;
+    var score = 0;
+
+
+    start();
+
+    var minLeft =  - myPlane.offsetWidth /2,
+        maxLeft =  oWrap.offsetWidth - myPlane.offsetWidth /2,
+        minTop =  -  myPlane.offsetTop /2,
+        maxTop = oWrap.offsetHeight - myPlane.offsetWidth /2
+    ;
+
+    function start() {
+        oWrap.addEventListener("mouseenter",function (ev) {
+
+            document.addEventListener("mousemove",plane);
+
+            function plane(ev){
+
+                    ev = ev || window.event;
+
+                    var _left =  ev.clientX  - oWrap.offsetLeft - myPlane.offsetWidth /2,
+                        _top =   ev.clientY - oWrap.offsetTop -  myPlane.offsetHeight /2
+                    ;
+                    _left = Math.min(maxLeft,_left);
+                    _left = Math.max(minLeft,_left);
+                    _top = Math.min(maxTop,_top);
+                    _top = Math.max(minTop,_top);
+
+                    myPlane.style.left = _left + "px";
+                    myPlane.style.top = _top +"px";
+
+            }
+
+            oWrap.addEventListener("mouseleave",function () {
+
+                document.removeEventListener("mousemove",plane)
+            });
+
+
+        });
+
+    }
+
+    //子弹的生成
+   myPlane.timer = setInterval(function(){
+
+       var Fire = document.createElement("div");
+       Fire.className = "fire";
+       oContent.appendChild(Fire);
+
+       Fire.style.left = myPlane.offsetLeft   + myPlane.offsetWidth /2  - Fire.offsetWidth/2+ 'px';
+       Fire.style.top = myPlane.offsetTop + 'px';
+
+       !function move(){
+
+            Fire.style.top = Fire.offsetTop - 15 + "px";
+
+            if(- Fire.offsetTop > oWrap.offsetHeight  ){
+                oContent.removeChild(Fire);
+            }else{
+                requestAnimationFrame(move)
+            }
+
+       }();
+
+   },150);
+
+    //生成敌军飞机
+    (function enemy() {
+        var index = 0;
+        enemyTimer = setInterval(function () {
+            var ePlane = document.createElement("div");
+            ePlane.className = "enemy";
+            index++;
+            ePlane.HP = 1;
+            if(index  === 15){
+                ePlane.className = "bigEnemy";
+                index = 0;
+                ePlane.HP = 10
+            }
+            ePlane.speedY = (Math.random()+1) * 5;
+            oContent.appendChild(ePlane);
+            ePlane.style.left = Math.random()  * oWrap.offsetWidth  - ePlane.offsetWidth / 2 + "px";
+            ePlane.style.top = - ePlane.offsetHeight + "px";
+
+            !function move(){
+
+                ePlane.style.top = ePlane.offsetTop + ePlane.speedY + "px";
+
+                if(ePlane.offsetTop > oWrap.offsetHeight  ){
+                    oContent.removeChild(ePlane);
+                }else{
+                    requestAnimationFrame(move)
+                }
+
+                //碰撞检验
+                (function () {
+
+                    var aFire = document.getElementsByClassName("fire"),
+                        aPlanes = document.getElementsByClassName("enemy")
+                    ;
+                    var arr = [].slice.call(aFire),
+                        arr1 =  [].slice.call(aPlanes)
+                    ;
+
+                    document.onkeydown = function (e) {
+                        e = e || window.event;
+                       if(e.keyCode === 32){
+                           arr1.forEach(function (item) {
+                               item.style.backgroundImage = "url('img/boom_small.png')";
+                               setTimeout(function () {
+                                   oContent.removeChild(item);
+                                   score = 0;
+                               },100)
+                           })
+                       }
+
+                    };
+
+                    arr.forEach(function (item) {
+                        if(check(item, ePlane)){
+                            ePlane.HP--;
+                            addScore(1);
+                            oContent.removeChild(item);
+                            if(ePlane.HP === 0){
+                                ePlane.style.backgroundImage = "url('img/boom_small.png')";
+                                setTimeout(function () {
+                                    oContent.removeChild(ePlane);
+                                },100)
+                            }
+                        }
+                    })
+                })();
+
+                //积分
+                function addScore(s){
+                    score += s;
+                    oScore.innerHTML = (""+score).padStart(7,"0");
+                }
+
+                function check(obj1,obj2) {
+                    var T1 = obj1.offsetTop,
+                        B1 = T1 + obj1.offsetHeight,
+                        L1 = obj1.offsetLeft,
+                        R1 = L1 + obj1.offsetWidth;
+                    var T2 = obj2.offsetTop,
+                        B2 = T2 + obj2.offsetHeight,
+                        L2 = obj2.offsetLeft,
+                        R2 = L2 + obj2.offsetWidth;
+                    return !(B2 < T1 || R2 < L1 || T2 > B1 || L2 > R1);
+                }
+
+            }();
+
+        },250)
+    })();
+
+})()
+
+
+
+    </script>
+    </body>
+</html>

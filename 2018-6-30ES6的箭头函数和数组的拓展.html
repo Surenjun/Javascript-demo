@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+    <script>
+
+        //箭头函数
+            /*//let a = () => 2
+               let a = function(){
+                   return 2;
+               }*/
+
+            let b = x => x+2;
+            console.log( b(2) );  //->4
+
+            let a = (x,y) => x + y;
+            console.log(a(3, 4)); //->7
+
+            let c = (a = 2, b= 2) => a + b;
+            console.log(c(4,5));  //->9
+
+            let d = ()=>{
+                console.log(this);
+            };
+            d();                 //-> window
+
+            document.onclick = () => {  console.log(this); }; //->还是window
+
+            /*function f(){
+                   setTimeout(function(){
+                       console.log(this);  //->window
+                   },100);
+            }*/
+
+            function f(){
+                setTimeout(()=>{
+                    console.log(this);
+                },100);
+            }
+        /*********************************************************************/
+
+            f.call( {x:1} ); //->{x:1}
+
+            let arr = [1,2,3,4,5,6,7,8,9];
+            arr.sort((a,b)=> b - a);
+
+            let arr1 = arr.map( (a,b,c) => a + 2); //map返回的是一个新数组
+
+            let arr2 = [1,2,3,4,5];
+
+        {// Array.from()
+            /*let f = Array.from(arr2 , function(value,index){
+                    return value ** 2;
+                });*/
+
+            let obj = {
+                0: 1,
+                1: 2,
+                length: 2
+            };
+
+            let arr = Array.from(obj);
+
+            console.log(arr);
+            //let arr = [...obj];
+
+            let arr3 = Array.from(arr, v => v ** 2);
+            console.log(arr3);
+
+        }
+
+        /*********************************************************************/
+
+        {
+
+            /*
+            find  找不到的话返回undefined
+            finIndex 找不到的返回-1
+
+             */
+
+            let arr = [1,2,4,5];
+
+            let num = arr.find(v=>v>2);
+
+            let index = arr.findIndex(v=>v>3);
+
+            console.log(num);
+
+
+        }
+
+        /*********************************************************************/
+
+        //copyWithin
+        {
+            let arr = [1,2,3,4,5];
+            //arr.copyWithin(1,  2,4); //[1,3,4,4,5] ->把第2到到第4位拷贝但不包括第四位 拷贝到从第1位开始
+            arr.copyWithin(4,  0,3);   // [1,2,3,4,1]
+            console.log(arr);
+        }
+
+        /*********************************************************************/
+
+        //方法的简写 属性的简写
+            let name = "苏仁君";
+
+            let obj = {
+                name,
+                f1(){}
+            };
+            obj.f1();
+            console.log(obj);
+
+            //let json = {...json1}
+
+        //属性名表达式
+        {
+            let a = "name";
+            let json = {
+                [a] : a
+            };
+            console.log(json);
+        }
+
+        {
+            let a = ()=>"goudan";
+
+            let obj = {
+                [1+2] : "ff",
+                ["x"+"y"]: true,
+                [a()] : "狗蛋",
+                [true] : "pp",
+                [{}] : "jj"
+            };
+
+            console.log(obj);
+        }
+
+        /*********************************************************************/
+
+    </script>
+    </body>
+</html>

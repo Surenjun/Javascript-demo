@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+    </head>
+    <body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+
+        {
+            let div = document.getElementsByTagName("div");
+
+            for(let i = 0; i < 5;i++){
+
+                div[i].onclick = function () {
+
+                    console.log(i);
+
+                }
+            }
+        }
+
+        let arr = [7,8,9,1,6,5,6];
+        //let maxA = Math.max.apply(Math,arr);
+        let maxA = Math.max(...arr);
+
+        let a = 10;
+
+        function f() {
+            console.log(a);
+            let a = 11;
+        }
+
+        f(); //->会报错 造成了暂时性死区
+    </script>
+        </body>
+    </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+         <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+    //1.append
+        var $ul = $("<ul></ul>");
+        //$("#wrap").append($ul);
+
+        //$("#wrap").append($("#r"));->如果文本中有#r这个文本对象 会把#r移动到#wrap里去
+
+    //2.prepend ->往前面去添加
+
+    //3.appendTo $("#wrap").append($("#r")) 把#wrap添加到#r里 反向操作
+        //prependTo
+
+    //4.after() ->兄弟的添加 insertAfter() ->反向操作
+    //5.before() insertBefore
+
+    //6.wrap -> $("p").wrap("<div></div>");给p加个div的父级 就算重复没有移动功能 会添加一份
+        //unwrap -> 删掉父级 但父节点里的东西还存在
+        //wrapAll -> $("p").wrapAll("<div></div>") ->给第一个p添加div父级并把剩余的p转移到这个父级中
+        //wrapInner $("#box").wrapInner("<div></div>") ->给它所有的子元素 加一个父级
+
+           /*  -> <div id="box">
+                     <div>
+                         <p></p>
+                         <p></p>
+                         <p></p>
+                         <p></p>
+                     </div>
+                   </div>*/
+
+    //7.empty ->$("#wrap").empty 把#wrap里面内容清空;
+    //8.remove ->$("#wrap").remove 把自己移除
+
+    //9.clone() var $ele = $(".p").clone(bool,bool1);->把p里的所有节点克隆一份
+        //bool-> 是否复制事件 bool1-> 是否复制子元素
+
+    //10 detach() ->与remove不同的是 它能保留数据和事件
+
+    </script>
+    </body>
+</html>

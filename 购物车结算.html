@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>购物车结算</title>
+    <style>
+        *{ margin:0; padding:0; font-family:"Microsoft yahei",serif;}
+        li{ list-style-type: none;}
+        table{
+            width: 1000px;
+            border-collapse: collapse;
+            border-color: #930;
+            margin: 50px auto 0;
+            user-select: none;
+        }
+        table tr td{
+            width: 250px;
+            height: 100px;
+            text-align: center;
+        }
+        table tr.title td{
+            height: 50px;
+            background: #fff;
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        table tr td img{
+            display: block;
+            width: auto;
+            height: 70px;
+            margin: 0 auto;
+        }
+        table tr td.number span{
+            display: inline-block;
+            font-size: 12px;
+            text-align: center;
+        }
+        table tr td.number span.down,table tr td.number span.add{
+            width: 30px;
+            height: 30px;
+            background: #ddd;
+            line-height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        table tr td.number span.num{
+            width: 50px;
+            height: 28px;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            line-height: 28px;
+            color: #c36;
+        }
+        .box{
+            width: 1000px;
+            height: 50px;
+            background: #fff;
+            margin: 10px auto;
+        }
+        .box p{
+            float: right;
+            width: 250px;
+            height: 50px;
+            line-height: 50px;
+            color: #000;
+            font-size: 14px;
+        }
+        .box p span{
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table border="1">
+        <thead></thead>
+        <tbody>
+            <tr class="title">
+                <td>商品</td>
+                <td>单价</td>
+                <td>数量</td>
+                <td>小计</td>
+                <td>操作</td>
+            </tr>
+            <tr>
+                <td><img src="images/shop1.jpg" alt=""></td>
+                <td class="danjia">8</td>
+                <td class="number"><span class="down">-</span><span class="num">0</span><span class="add">+</span></td>
+                <td class="price">0</td>
+            </tr>
+            <tr>
+                <td><img src="images/shop2.jpg" alt=""></td>
+                <td class="danjia">10</td>
+                <td class="number"><span class="down">-</span><span class="num">0</span><span class="add">+</span></td>
+                <td class="price">0</td>
+            </tr>
+            <tr>
+                <td><img src="images/shop3.jpg" alt=""></td>
+                <td class="danjia">12.5</td>
+                <td class="number"><span class="down">-</span><span class="num">0</span><span class="add">+</span></td>
+                <td class="price">0</td>
+            </tr>
+            <tr>
+                <td><img src="images/shop4.jpg" alt=""></td>
+                <td class="danjia">23</td>
+                <td class="number"><span class="down">-</span><span class="num">0</span><span class="add">+</span></td>
+                <td class="price">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="box">
+        <p class="totalPrice">合计费用： <span>0</span> ￥</p>
+        <p class="totalNum">已选中商品： <span>0</span> 个</p>
+    </div>
+    <script>
+        (function () {
+
+            var aPrice = document.getElementsByClassName("danjia"),
+                aDown =  document.getElementsByClassName("down"),
+                aNum = document.getElementsByClassName("num"),
+                aAdd =  document.getElementsByClassName("add"),
+                price = document.getElementsByClassName("price"),
+                totalPrice = document.querySelector(".totalPrice span"),
+                totalNum = document.querySelector(".totalNum span")
+
+            ;
+			for(var i = 0,len = aPrice.length;i < len;i++){
+
+                aAdd[i].onclick = fnn.bind(this,i,true);
+                aDown[i].onclick = fnn.bind(this,i,false);
+            }
+
+            function fnn(i,bool) {
+
+                var num = parseInt(aNum[i].innerHTML);
+
+                if(bool){
+                    num++;
+                }else {
+                    if(num)  num--;
+                }
+
+                aNum[i].innerHTML = num;
+                var pic = num * parseInt(aPrice[i].innerHTML);
+                price[i].innerHTML = pic;
+
+                total(num,pic)
+            }
+
+            var totalnum = 0,
+                totalMoney = 0
+            ;
+
+            function total(num,money) {
+
+                totalnum += num;
+                totalMoney += money;
+
+                totalNum.innerHTML = totalnum;
+                totalPrice.innerHTML = totalMoney;
+            }
+
+        })();
+
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

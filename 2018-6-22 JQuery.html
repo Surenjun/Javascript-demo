@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="wrap">
+            <p></p>
+            <div id="con">
+                <p></p>
+                <p></p>
+                <p class="ppp"></p>
+                <p></p>
+            </div>
+        </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+
+
+        var $p = $("p"),
+            $w = $("#wrap");
+
+
+        $("p",$wrap);//选择的是在$wrap里面的p标签
+
+        $p.css({
+            "color": function () {
+                return "red"
+            }
+        });
+
+        $p.each(a,b); //a为索引 b为对应的DOM对象 一共就2个参数
+        //$(this)     //把DOM对象变成Jquery对象
+        //$p.get()    //把Jquery对象变成DOM对象
+
+        console.log($p.eq(0).index());              //不传参数获取的是在当前在父级的序号
+        console.log($p.eq(0).index( "p" ));         //获取的是在所有p标签里的序号
+        console.log($p.index( $( ".ppp" )) );         //获取.ppp在$p里的序号
+        //console.log($("#con").find("p").length);
+
+        $w.data("p",10);    //存值
+        $w.data("p");       //取值
+
+       /*
+            jQuery.noConflict();
+            (function ($) {
+                ....
+            })(jQuery)
+
+        */
+
+        // (function(){
+        //        function $(){
+        //
+        //            return new Init();
+        //        }
+        //
+        //        function Init(){
+        //
+        //        }
+        //
+        //        Init.prototype = {
+        //            //这里就是jquery的api
+        //            css : function () {
+        //
+        //            },
+        //
+        //            fadeIn : function () {
+        //
+        //            }
+        //
+        //        };
+        //
+        //        window.$ = window.jQuery = $;
+        //
+        //    })();
+
+    </script>
+    </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+
+    </style>
+</head>
+    <body>
+        <div id="container">
+    
+        </div>
+         <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        /**************************** promise **********************************/
+
+        // Promise对象代表一个异步操作，有三种状态：
+        //
+        // pending（进行中）、fulfilled（已成功）和rejected（已失败）。
+        //
+        // 定时器的返回值是当前在定时器队列的序号
+        setTimeout(function () {
+
+        },time,a,b,c);
+
+        setTimeout((a,b,c)=>{
+            console.log(a, b, c);
+        },2000,1,2,3);
+
+        new Promise((resolve,reject) =>{
+
+            //异步操作
+            setTimeout(()=>{
+                console.log(123);
+                resolve("abc");
+            },0)
+                                //对应2个 一个成功  一个失败
+        }).then(function (data) {  console.log(data); },function (err) { console.log(err);});
+
+        new Promise((resolve,reject) =>{
+
+            //异步操作
+            setTimeout(()=>{   //try catch语句
+                console.log(123);
+                //resolve("abc");
+                reject("error")
+            },0)
+
+        })
+        .then( data=> { console.log(data); return "edf";})       //=>abc
+        .then( data=> { console.log(data); })                   //=>edf
+        .catch(data => console.log(data));                      //=>error
+                                                                //then为异步
+        Promise.race([]); //=>取里面元素的的第一个的状态
+        Promise.all([]);  //=>
+
+        Promise.();
+
+
+        /****************************  async  **********************************/
+
+        var fn = function (time) {
+            return new Promise(function (resolve, reject) {
+                console.log("开始处理异步");
+                setTimeout(function () {
+
+                    reject();
+                    console.log(time);
+                    console.log("异步处理完成");
+
+                }, time);
+            })
+        };
+
+        var start = async function () {
+            // 在这里使用起来就像同步代码那样直观
+            console.log('start');
+            await fn(3000);
+            await fn(500);
+            await fn(1000);
+            console.log('end');
+        };
+
+        start();
+
+        /****************************  fetch  **********************************/
+
+        fetch('https://lab.zxh326.cn/api/user/profile', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzEyODMyNTAsInVz' +
+                                'ZXJfaWQiOjEsInVzZXJfZW1haWwiOiIxNTEwMTgwMTU3QHFxLmNvbSIsImRvIjoidG9rZW4ifQ.PjuzCSl' +
+                                'vmtVtYCjlTGGOvPk0oADk49rp20n4L-W96kU'
+            },
+        })
+            .then(data => data.json())
+            .then(data => { console.log(data);})
+            .catch(e => console.log("Oops, error", e));
+
+
+        async function f() {
+            try {
+                let response = await fetch('https://lab.zxh326.cn/api/user/profile',{
+                    method:"GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzEyODMyNTAsInVz' +
+                                        'ZXJfaWQiOjEsInVzZXJfZW1haWwiOiIxNTEwMTgwMTU3QHFxLmNvbSIsImRvIjoidG9rZW4ifQ.PjuzCSl' +
+                                        'vmtVtYCjlTGGOvPk0oADk49rp20n4L-W96kU'
+                    },
+
+                });
+
+                let data = await response.json();
+                console.log(data);
+            } catch(e) {
+                console.log("Oops, error", e);
+            }
+        }
+        f();
+
+        let fn = function () {
+                return new Promise(function (resolve, reject) {
+
+                    $.ajax({
+
+                        type : 'POST',
+                        url : "https://lab.zxh326.cn/api/user/profile",
+
+                        beforeSend: function(request) {
+                            request.setRequestHeader("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
+                                "eyJleHAiOjE1MzEyODMyNTAsInVzZXJfaWQiOjEsInVzZXJfZW1haWwiOiIxNT" +
+                                "EwMTgwMTU3QHFxLmNvbSIsImRvIjoidG9rZW4ifQ.PjuzCSlvmtVtYCjlTGGOvP" +
+                                "k0oADk49rp20n4L-W96kU");
+                        },
+
+                        data : {"name":"surenjun","age":18},
+
+                        success:function (data) {
+                           resolve(data);
+                        },
+                    })
+
+                })
+            };
+            fn().then(data=>{console.log(data);})
+
+    </script>
+    </body>
+</html>

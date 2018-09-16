@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,p,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        #wrap{
+            width: 430px;
+            height: 204px;
+            margin: 50px auto;
+            user-select: none;
+        }
+        #wrap .left{
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+        #wrap .left ul li{
+            width: 100%;
+            height: 30px;
+            margin-bottom: 3px;
+            background: #000;
+            color:#fff;
+            line-height: 30px;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        #wrap .left ul li.on{
+            background-color: #f60;
+        }
+        #wrap .right{
+            float: right;
+            position: relative;
+            width: 326px;
+            height: 204px;
+        }
+        #wrap .right .part{
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #wrap .right .part.on{
+            display: block;
+        }
+        #wrap .right ul{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        #wrap .right ul.img li{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #wrap .right ul li.on{
+            display: block;
+        }
+        #wrap .right .part .tab{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 27px;
+            width: 100%;
+        }
+        #wrap .right .part .tab li{
+            float: left;
+            width: 25px;
+            height: 25px;
+            margin: 0 3px;
+            background: #000;
+            color: #fff;
+            line-height: 25px;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        #wrap .right .part .tab li.on{
+            background: #f60;
+        }
+
+    </style>
+</head>
+    <body>
+    <div id="wrap">
+
+        <div class="left">
+            <ul>
+                <li class="on">豪车</li>
+                <li>美味</li>
+                <li>美女风景</li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <div class="part on">
+                <ul class="img">
+                    <li class="on"><img src="images/x1.jpg"></li>
+                    <li><img src="images/x2.jpg"></li>
+                    <li><img src="images/x3.jpg"></li>
+                    <li><img src="images/x4.jpg"></li>
+                </ul>
+                <ul class="tab">
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+
+            <div class="part">
+                <ul class="img">
+                    <li class="on"><img src="images/m1.jpg"></li>
+                    <li><img src="images/m2.jpg"></li>
+                    <li><img src="images/m3.jpg"></li>
+                    <li><img src="images/m4.jpg"></li>
+                    <li><img src="images/m13.jpg"></li>
+                </ul>
+                <ul class="tab">
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+
+            <div class="part">
+                <ul class="img">
+                    <li class="on"><img src="images/s1.jpg"></li>
+                    <li><img src="images/s2.jpg"></li>
+                    <li><img src="images/s3.jpg"></li>
+                    <li><img src="images/s4.jpg"></li>
+                    <li><img src="images/s5.jpg"></li>
+                </ul>
+                <ul class="tab">
+                    <li class="on">1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+
+
+
+        </div>
+
+    </div>
+    <script>
+        (function () {
+
+            var oLeftLi = document.querySelectorAll("#wrap .left ul li"),
+                oRightParts = document.querySelectorAll("#wrap .right .part")
+            ;
+
+            var index = 0;
+            for(var i = 0;i<oLeftLi.length;i++){
+
+                oLeftLi[i].index = i;
+
+                oLeftLi[i].onclick = function () {
+
+                    if(index === this.index) return;
+                    oLeftLi[index].className = '';
+                    oRightParts[index].className = "part";
+                    this.className = 'on';
+                    oRightParts[this.index].className = 'part on';
+                    index = this.index;
+
+                };
+                Right(i);
+            }
+
+
+            function Right(shu){
+                var oRight = oRightParts[shu],
+                    oRightImg = oRight.querySelectorAll("#wrap .right .part .img li"),
+                    oRightTab = oRight.querySelectorAll("#wrap .right .part .tab li")
+                ;
+                var index = 0;
+                for (var i = 0;i<oRightTab.length;i++){
+                    oRightTab[i].index = i;
+                    oRightTab[i].onclick = function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   (){
+                            if(index === this.index) return;
+                            oRightImg[index].className = "";
+                            oRightTab[index].className = "";
+                            this.className = 'on';
+                            oRightImg[this.index].className = 'on';
+                            index = this.index;
+                    }
+                }
+
+            }
+
+        })();
+
+    </script>
+    </body>
+</html>

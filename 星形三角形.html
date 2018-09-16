@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="帅气">
+    <meta name="description" content="帅气">
+    <meta name="Author" content="帅气的苏某人">
+    <title>Title</title>
+    <style>
+        body{font-family: 'Microsoft YaHei',serif}
+        body,dl,dd,h1,h2,h3,h4,h5,h6{margin:0}
+        ol,ul,li,a{margin:0;padding:0;list-style:none}
+        a{text-decoration: none}
+        img{border:none}
+
+        p{text-align: center;}
+
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+
+<script>
+      var oCt = document.getElementById('container');
+
+      var length = 20;
+
+      // for( var i =0;i<=length;i++){
+
+      //     var j =  (i < length/2)?(2*i + 1):(length - i)*2 + 1;
+
+      //         var str = '<p>';
+
+      //         for(var x = 0;x<j;x++){
+      //             str += '*';
+      //         }
+
+      //         str += '</p>';
+
+      //         oCt.innerHTML += str;
+      // }
+      //
+       for( var i =0;i<=length;i++){
+
+          var j =  (i < length/2)?(2*i + 1):(length - i)*2 + 1;
+
+              var str = '<p>';
+
+              for(var x = 0;x<j;x++){
+
+                  if( x===0 || x=== j - 1 ){
+                    str += '*';
+                  }
+                    str += '&nbsp;';
+               }
+
+              str += '</p>';
+
+              oCt.innerHTML += str;
+      }
+</script>
+</body>
+</html>
